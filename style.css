@@ -100,6 +100,18 @@ a:focus {
 
 }
 
+pre {
+	color: #000;
+	width: 90%;
+	background-color: #a4a5a5;
+	margin: 0 auto;
+	opacity: 1;
+	z-index: 3;
+	bottom: 0px;
+	overflow-x:scroll;
+
+}
+
 .background_image {
 	z-index: 1;
 }
