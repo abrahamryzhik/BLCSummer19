@@ -35,16 +35,18 @@
 	
 <div class="container">
 	<div class="midbox">
-		<h1><font color="#DADADA">Welcome to BLC Tutorials</font></h1>
-	  <h2>Der Text</h2>
-	  <p>Habe nun, ach! Philosophie,<br>
-	    Juristerei und Medizin,<br>
-	    Und leider auch Theologie<br>
-	    Durchaus studiert, mit heißem Bemühn.<br>
-	    Da steh ich nun, ich armer Tor!<br>
-	    Und bin so klug als wie zuvor;<br>
+		<h1><font color="#DADADA">GIS in Python</font></h1>
+	  <h2>Background on our example</h2>
+	  <p>GIS is a broad topic with much to cover rendering the task of writing a single, comprehensive article on the subject impossible. Instead, the goal of this example is to instruct the reader on the specific parts of GIS which were used in our research - specifically mapping points onto maps using latitude and longitude. </p>
+	  <p>Our specific example comes from our investigation into the frequency of violations of EPA statutes at the individual facility level, and seeing if facilities tend to have more or less violations based on their geographical location. The dataset was obtained from the <a href="https://echo.epa.gov/">EPA</a>, and information on collecting the data from the website can be found in our <a href="web_scraping.html">other tutorial</a> on web scraping, and we measure the number of violations using the number of quarters with violations in the last three years, meaning that each facility will be assigned an integer value in a range of 1 to 12. The results are pictured here for reference.</p>
+	  <img src="final_map_indiv.png" alt="Smiley face" class="center">
+	  <p>We will then also discuss our analysis at the county level which involved aggregating the data for each county from the data at the individual facility level. From this kind of data, there are many kinds of maps that can be obtained, for example one could find the average number of quarters with violations per facility per county, or just the total number of quarters with violations in each county - we will discuss more in detail, but here to give you an idea of the kind of maps we're talking about, is the map for violations per facility per county, that is to say that each color represents the average number of quarters with violations the facilities have in that county.</p>
+	  <img src="final_map_count.png" alt="Smiley face" class="center">
+	  <p>Before beginning, there are a few basic things that one needs to obtain.</p>
+
+	  <h2>Getting Started</h2>
 	</div>
-	<div class="bottombarshort">
+	<div class="bottombar">
 		<center><font color=#6b6b6b><br><br>copyright 2019</font></center>
 	</div>
 </div>

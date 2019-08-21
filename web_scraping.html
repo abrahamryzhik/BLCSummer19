@@ -45,7 +45,7 @@
 
 	  <h2>Finding Where the Data is Coming From</h2>
 	  <p>Our first step is to load the JavaScript console for this page. On Chrome, from the <a href="https://echo.epa.gov/detailed-facility-report?fid=110002762207">facility report page</a> go to View-->Developer-->JavaScript Console. The console should appear on the right as below. <br>
-	  	<img src="screenshot1.png" height="220px" align="middle">
+	  	<img src="screenshot1.png" height="220px" alt="Smiley Face" class="center">
 	  	<br>
 	  If we switch from the Console tab on the top to the Network tab, in the Name column you will see many files with the .js ending. Theoretically we may have to search through all these files to find the one that loads the data we want, but luckily they have descriptive names to help us narrow our search. In our case, the file we want to look at is dfr-main.js (dfr stands for Detailed Facility Report). If we open up this file in a new tab, we can look through it and see how the data is loaded by JavaScript. The first function in this file is called <code>getDFR()</code> and this is exactly where we will find our answers. Here is what the beginning of the function looks like: <br>
 	</p>
