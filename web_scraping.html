@@ -92,6 +92,78 @@ function getDFR() {
     	<br>
     	This page contains a JSON file with everything we need! All that's left is getting the data from this page and figuring out how to run this for all the facilities.
 	  </p>
+	  <h2>Getting the Data for a Facility</h2>
+	  <p>
+	  	For each facility we will use the <code>requests</code> library to get the information from the URL with the JSON. We then use the JSON object to print out all of the demographic information we want:
+	  </p>
+	  	<pre>
+	  		<code>
+import requests
+url = "https://echo.epa.gov/app/proxy/proxy.php?s=dfr&p_id=110002762207"
+r = requests.get(url)
+for data in r.json()['Results']['Demographics']:
+    print(data + ": " + r.json()['Results']['Demographics'][data])
+	  		</code>
+	  	</pre>
+	  <p>
+	  	After running the code, we should see the following demographic information printed out:
+	  </p>
+	  <pre>
+	  	<code>
+Radius: 3
+CenterLatitude: 36.68793
+CenterLongitude: -119.94582
+TotalPersons: 459
+LandArea: 100%
+WaterArea: 0%
+PopulationDensity: 16/sq.mi.
+PercentMinority: 42%
+Households: 154
+HousingUnits: 167
+HouseholdsPublicAssistance: 6
+PersonsBelowPovertyLevel: 215
+White: 327 (71%)
+AfricanAmerican: 0 (0%)
+HispanicOrigin: 182 (40%)
+AsianPacificIslander: 6 (1%)
+AmericanIndian: 17 (4%)
+OtherMultiracial: 109 (24%)
+Child: 28 (6%)
+Minors: 122 (27%)
+Adults: 337 (73%)
+Seniors: 59 (13%)
+Less9thGrade: 77 (29.96%)
+Grades9to12: 37 (14.4%)
+HSDiploma: 68 (26.46%)
+SomeCollege: 54 (21.01%)
+BSBA: 21 (8.17%)
+IncomeLess15k: 10 (9.8%)
+Income15to25k: 17 (16.67%)
+Income25to50k: 36 (35.29%)
+Income50to75k: 13 (12.75%)
+Income75kPlus: 26 (25.49%)
+	  	</code>
+	  </pre>
+	  <h2>Speeding it Up</h2>
+	  <p>
+	  	While the previous section described a very simple way to get all of the information we want from a facility, you may notice when running your code that each request will take a couple of seconds. This is fine if we only want to look at a few facilities, but looping over hundreds of thousands of facilities (which is our goal if we want to look at national trends) will take too long with this method. In this section we describe a way to use threading to significantly speed up the process and make data collection fast. We will be using the <code>ThreadPoolExecutor</code> from <code>concurrent.futures</code> so you will need to <code>import concurrent.futures</code> at the top of your code. Running the <code>ThreadPoolExecutor</code> can be done as follows:
+	  </p>
+	  <pre>
+	  	<code>
+with concurrent.futures.ThreadPoolExecutor(max_workers=None) as executor:
+        future_to_url = (executor.submit(load_url, url) for url in urls)
+        for future in concurrent.futures.as_completed(future_to_url):
+            try:
+                data = future.result()
+            except Exception as exc:
+                data = None
+            finally:
+                print(data)
+	  	</code>
+	  </pre>
+	  <p>
+	  	In the code, <code>load_url</code> should be a function you define earlier to process each URL. It will probably look something similar to the code in the previous section of tutorial, but you will want to return some result instead of just printing it. Also in the code, <code>urls</code> should be a list of all the URLs you want to scrape. This list should probably be read from a file and not hard-coded anywhere. Whatever you return from <code>load_url</code> will be placed into the <code>data</code> field when the code does <code>data = future.result()</code>, so while this code simply prints it out you should do whatever is appropriate for your case. Lastly, in this code we have <code>max_workers=None</code> but this can be customized. For more information about the <code>ThreadPoolExecutor</code> we recommend checking out the <a href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor">documentation</a>.
+	  </p>
 	</div>
 	<div class=bottombar>
 		<center><font color=#6b6b6b><br><br>copyright 2019</font></center>
