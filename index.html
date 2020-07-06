@@ -1,109 +1,51 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head>
-<title></title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+<title>BLC how to - Home</title>
 </head>
-
-<style>
-body {
-	background-image: url('grunge_patterns.jpg');
-	background-attachment: fixed;
-	color: #333;
-}
-.box {
-	border-radius: 3px;
-	background: rgba(101, 101, 101, 0.7); margin: auto; padding: 12px;
-}
-.lightbox {
-	zoom: 1.5;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(10, 10, 10, 0.8);
-	text-align: center;
-	margin: auto;
-}
-div.horizontal {
-	display: flex;
-	justify-content: center;
-	height: 100%;
-}
-div.vertical {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	width: 100%;
-}
-::-webkit-input-placeholder {
-   color: #955;
-   text-align: center;
-}
-::-moz-placeholder {
-   color: #955;
-   text-align: center;
-}
-:-ms-input-placeholder {
-   color: #955;
-   text-align: center;
-}
-</style>
 
 <body>
 
-	<div id="loginbox" class="lightbox" >
-		<div class="horizontal">
-			<div class="vertical">
-				<div class="box">
-					<input style="margin: 16px; text-align: center;" id="password" type="password" placeholder="password" /> <br />
-					<button id="loginbutton" type="button">Enter</button>
-					<p id="wrongPassword" style="display: none">wrong password</p>
+<div class="menu">
+	<div class="row">
+		<div class="column">
+			<div class="logo">
+				<div class="smrow">
+					<div class = "smcolumn">
+						<img class="logo" src="bill_lane_logo.png" height="60px" alt="Smiley face" align="right">
+					</div>
+					<div class="smcolumn">
+						<h3>Bill Lane Center for<br>the American West</h3>
+					</div>
 				</div>
 			</div>
 		</div>
+		
+		<div class="column">
+			<bartext>
+	  			<p>&nbsp;</p>
+	  			<p><a href="index.html">Home</a> &nbsp &nbsp &nbsp <a href="page_1.html">Tutorials</a> &nbsp &nbsp &nbsp <a href="https://west.stanford.edu/">The Center</a> &nbsp &nbsp </p>
+			</bartext>	
+		</div>
+
+	</div>	
+</div>
+	
+<div class="container">
+	<div class="midbox">
+		<h1><font color="#DADADA">Welcome to BLC Tutorials</font></h1>
+	  
+	  <p>On this page you will find tutorials to help you replicate the work done by John Coyle and Abraham Ryzhik at the Bill Lane Center in the Summer of 2019 while investigating trends in EPA violations nationally. Currently, the main tutorials we have describe how to scrape data from the facility reports pages given by the EPA and how to use GIS (Geographic Information System) to make maps of this data.</p>
 	</div>
 
+	<div class="bottombarshort">
+		<center><font color=#6b6b6b><br><br>copyright 2019</font></center>
+	</div>
+</div>
 
 
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-
-
-	 <script type="text/javascript" src="https://rawcdn.githack.com/chrisveness/crypto/7067ee62f18c76dd4a9d372a00e647205460b62b/sha1.js"></script>
-
-	<script type="text/javascript">
-	"use strict";
-	function loadPage(pwd) {
-		var hash= pwd;
-		hash= Sha1.hash(pwd);
-		var url= hash + "/index.html";
-		$.ajax({
-			url : url,
-			dataType : "html",
-			success : function(data) {
-				window.location= url;
-			},
-			error : function(xhr, ajaxOptions, thrownError) {
-				parent.location.hash= hash;
-				//$("#wrongPassword").show();
-				$("#password").attr("placeholder","wrong password");
-				$("#password").val("");
-			}
-		});
-	}
-	$("#loginbutton").on("click", function() {
-		loadPage($("#password").val());
-	});
-	$("#password").keypress(function(e) {
-		if (e.which == 13) {
-			loadPage($("#password").val());
-		}
-	});
-	$("#password").focus();
-	</script>
-
+	
 </body>
 </html>
